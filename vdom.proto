@@ -25,6 +25,14 @@ message Node {
         ELEMENT = 1;
     };
 
+    enum RenderType {
+        BLOCK = 0;
+        INLINE = 1;
+        IMAGE = 2;
+        VIDEO = 3;
+        OTHER = 10;
+    };
+
     required  Type type = 1;
 
     optional  uint32 x  = 2;
@@ -46,6 +54,8 @@ message Node {
     optional string href = 15;
     optional string value = 16;
     optional string text = 17;
+
+    optional RenderType render_type = 18 [default = OTHER ];
 
     optional string font_size = 20;
     optional string font_family = 21;

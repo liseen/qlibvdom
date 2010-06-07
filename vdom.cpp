@@ -24,6 +24,7 @@ const ::google::protobuf::Descriptor* Node_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Node_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* Node_Type_descriptor_ = NULL;
+const ::google::protobuf::EnumDescriptor* Node_RenderType_descriptor_ = NULL;
 
 }  // namespace
 
@@ -73,7 +74,7 @@ void protobuf_AssignDesc_vdom_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Document));
   Node_descriptor_ = file->message_type(2);
-  static const int Node_offsets_[22] = {
+  static const int Node_offsets_[23] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, x_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, y_),
@@ -91,6 +92,7 @@ void protobuf_AssignDesc_vdom_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, href_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, value_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, text_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, render_type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, font_size_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, font_family_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Node, font_style_),
@@ -109,6 +111,7 @@ void protobuf_AssignDesc_vdom_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Node));
   Node_Type_descriptor_ = Node_descriptor_->enum_type(0);
+  Node_RenderType_descriptor_ = Node_descriptor_->enum_type(1);
 }
 
 namespace {
@@ -153,17 +156,20 @@ void protobuf_AddDesc_vdom_2eproto() {
     "_height\030\005 \001(\005\022\033\n\003doc\030\006 \001(\0132\016.vdom.Docume"
     "nt\"R\n\010Document\022\r\n\005width\030\001 \001(\005\022\016\n\006height\030"
     "\002 \001(\005\022\r\n\005title\030\003 \001(\t\022\030\n\004body\030\004 \001(\0132\n.vdo"
-    "m.Node\"\240\003\n\004Node\022\035\n\004type\030\001 \002(\0162\017.vdom.Nod"
+    "m.Node\"\231\004\n\004Node\022\035\n\004type\030\001 \002(\0162\017.vdom.Nod"
     "e.Type\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\t\n\001w\030\004 \001(\r\022"
     "\t\n\001h\030\005 \001(\r\022\n\n\002id\030\007 \001(\t\022\020\n\010tag_name\030\006 \001(\t"
     "\022\014\n\004name\030\010 \001(\t\022\022\n\nclass_name\030\t \001(\t\022\r\n\005co"
     "lor\030\n \001(\t\022\030\n\020background_color\030\013 \001(\t\022\016\n\006t"
     "arget\030\014 \001(\t\022\013\n\003alt\030\r \001(\t\022\013\n\003src\030\016 \001(\t\022\014\n"
     "\004href\030\017 \001(\t\022\r\n\005value\030\020 \001(\t\022\014\n\004text\030\021 \001(\t"
-    "\022\021\n\tfont_size\030\024 \001(\t\022\023\n\013font_family\030\025 \001(\t"
-    "\022\022\n\nfont_style\030\026 \001(\t\022\023\n\013font_weight\030\027 \001("
-    "\t\022\037\n\013child_nodes\030\030 \003(\0132\n.vdom.Node\"\035\n\004Ty"
-    "pe\022\010\n\004TEXT\020\000\022\013\n\007ELEMENT\020\001", 665);
+    "\0221\n\013render_type\030\022 \001(\0162\025.vdom.Node.Render"
+    "Type:\005OTHER\022\021\n\tfont_size\030\024 \001(\t\022\023\n\013font_f"
+    "amily\030\025 \001(\t\022\022\n\nfont_style\030\026 \001(\t\022\023\n\013font_"
+    "weight\030\027 \001(\t\022\037\n\013child_nodes\030\030 \003(\0132\n.vdom"
+    ".Node\"\035\n\004Type\022\010\n\004TEXT\020\000\022\013\n\007ELEMENT\020\001\"D\n\n"
+    "RenderType\022\t\n\005BLOCK\020\000\022\n\n\006INLINE\020\001\022\t\n\005IMA"
+    "GE\020\002\022\t\n\005VIDEO\020\003\022\t\n\005OTHER\020\n", 786);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vdom.proto", &protobuf_RegisterTypes);
   Window::default_instance_ = new Window();
@@ -993,6 +999,33 @@ const Node_Type Node::Type_MIN;
 const Node_Type Node::Type_MAX;
 const int Node::Type_ARRAYSIZE;
 #endif  // _MSC_VER
+const ::google::protobuf::EnumDescriptor* Node_RenderType_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Node_RenderType_descriptor_;
+}
+bool Node_RenderType_IsValid(int value) {
+  switch(value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 10:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#ifndef _MSC_VER
+const Node_RenderType Node::BLOCK;
+const Node_RenderType Node::INLINE;
+const Node_RenderType Node::IMAGE;
+const Node_RenderType Node::VIDEO;
+const Node_RenderType Node::OTHER;
+const Node_RenderType Node::RenderType_MIN;
+const Node_RenderType Node::RenderType_MAX;
+const int Node::RenderType_ARRAYSIZE;
+#endif  // _MSC_VER
 const ::std::string Node::_default_id_;
 const ::std::string Node::_default_tag_name_;
 const ::std::string Node::_default_name_;
@@ -1027,6 +1060,7 @@ const int Node::kSrcFieldNumber;
 const int Node::kHrefFieldNumber;
 const int Node::kValueFieldNumber;
 const int Node::kTextFieldNumber;
+const int Node::kRenderTypeFieldNumber;
 const int Node::kFontSizeFieldNumber;
 const int Node::kFontFamilyFieldNumber;
 const int Node::kFontStyleFieldNumber;
@@ -1067,6 +1101,7 @@ void Node::SharedCtor() {
   href_ = const_cast< ::std::string*>(&_default_href_);
   value_ = const_cast< ::std::string*>(&_default_value_);
   text_ = const_cast< ::std::string*>(&_default_text_);
+  render_type_ = 10;
   font_size_ = const_cast< ::std::string*>(&_default_font_size_);
   font_family_ = const_cast< ::std::string*>(&_default_font_family_);
   font_style_ = const_cast< ::std::string*>(&_default_font_style_);
@@ -1222,22 +1257,23 @@ void Node::Clear() {
         text_->clear();
       }
     }
-    if (_has_bit(17)) {
+    render_type_ = 10;
+    if (_has_bit(18)) {
       if (font_size_ != &_default_font_size_) {
         font_size_->clear();
       }
     }
-    if (_has_bit(18)) {
+    if (_has_bit(19)) {
       if (font_family_ != &_default_font_family_) {
         font_family_->clear();
       }
     }
-    if (_has_bit(19)) {
+    if (_has_bit(20)) {
       if (font_style_ != &_default_font_style_) {
         font_style_->clear();
       }
     }
-    if (_has_bit(20)) {
+    if (_has_bit(21)) {
       if (font_weight_ != &_default_font_weight_) {
         font_weight_->clear();
       }
@@ -1538,6 +1574,27 @@ bool Node::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(144)) goto parse_render_type;
+        break;
+      }
+      
+      // optional .vdom.Node.RenderType render_type = 18 [default = OTHER];
+      case 18: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_render_type:
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::vdom::Node_RenderType_IsValid(value)) {
+            set_render_type(static_cast< ::vdom::Node_RenderType >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(18, value);
+          }
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectTag(162)) goto parse_font_size;
         break;
       }
@@ -1777,8 +1834,14 @@ void Node::SerializeWithCachedSizes(
       17, this->text(), output);
   }
   
-  // optional string font_size = 20;
+  // optional .vdom.Node.RenderType render_type = 18 [default = OTHER];
   if (_has_bit(17)) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      18, this->render_type(), output);
+  }
+  
+  // optional string font_size = 20;
+  if (_has_bit(18)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_size().data(), this->font_size().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1787,7 +1850,7 @@ void Node::SerializeWithCachedSizes(
   }
   
   // optional string font_family = 21;
-  if (_has_bit(18)) {
+  if (_has_bit(19)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_family().data(), this->font_family().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1796,7 +1859,7 @@ void Node::SerializeWithCachedSizes(
   }
   
   // optional string font_style = 22;
-  if (_has_bit(19)) {
+  if (_has_bit(20)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_style().data(), this->font_style().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1805,7 +1868,7 @@ void Node::SerializeWithCachedSizes(
   }
   
   // optional string font_weight = 23;
-  if (_has_bit(20)) {
+  if (_has_bit(21)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_weight().data(), this->font_weight().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1973,8 +2036,14 @@ void Node::SerializeWithCachedSizes(
         17, this->text(), target);
   }
   
-  // optional string font_size = 20;
+  // optional .vdom.Node.RenderType render_type = 18 [default = OTHER];
   if (_has_bit(17)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      18, this->render_type(), target);
+  }
+  
+  // optional string font_size = 20;
+  if (_has_bit(18)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_size().data(), this->font_size().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1984,7 +2053,7 @@ void Node::SerializeWithCachedSizes(
   }
   
   // optional string font_family = 21;
-  if (_has_bit(18)) {
+  if (_has_bit(19)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_family().data(), this->font_family().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1994,7 +2063,7 @@ void Node::SerializeWithCachedSizes(
   }
   
   // optional string font_style = 22;
-  if (_has_bit(19)) {
+  if (_has_bit(20)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_style().data(), this->font_style().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -2004,7 +2073,7 @@ void Node::SerializeWithCachedSizes(
   }
   
   // optional string font_weight = 23;
-  if (_has_bit(20)) {
+  if (_has_bit(21)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->font_weight().data(), this->font_weight().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -2153,6 +2222,12 @@ int Node::ByteSize() const {
           this->text());
     }
     
+    // optional .vdom.Node.RenderType render_type = 18 [default = OTHER];
+    if (has_render_type()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->render_type());
+    }
+    
     // optional string font_size = 20;
     if (has_font_size()) {
       total_size += 2 +
@@ -2273,15 +2348,18 @@ void Node::MergeFrom(const Node& from) {
       set_text(from.text());
     }
     if (from._has_bit(17)) {
-      set_font_size(from.font_size());
+      set_render_type(from.render_type());
     }
     if (from._has_bit(18)) {
-      set_font_family(from.font_family());
+      set_font_size(from.font_size());
     }
     if (from._has_bit(19)) {
-      set_font_style(from.font_style());
+      set_font_family(from.font_family());
     }
     if (from._has_bit(20)) {
+      set_font_style(from.font_style());
+    }
+    if (from._has_bit(21)) {
       set_font_weight(from.font_weight());
     }
   }
@@ -2328,6 +2406,7 @@ void Node::Swap(Node* other) {
     std::swap(href_, other->href_);
     std::swap(value_, other->value_);
     std::swap(text_, other->text_);
+    std::swap(render_type_, other->render_type_);
     std::swap(font_size_, other->font_size_);
     std::swap(font_family_, other->font_family_);
     std::swap(font_style_, other->font_style_);

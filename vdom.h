@@ -56,6 +56,28 @@ inline bool Node_Type_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<Node_Type>(
     Node_Type_descriptor(), name, value);
 }
+enum Node_RenderType {
+  Node_RenderType_BLOCK = 0,
+  Node_RenderType_INLINE = 1,
+  Node_RenderType_IMAGE = 2,
+  Node_RenderType_VIDEO = 3,
+  Node_RenderType_OTHER = 10
+};
+bool Node_RenderType_IsValid(int value);
+const Node_RenderType Node_RenderType_RenderType_MIN = Node_RenderType_BLOCK;
+const Node_RenderType Node_RenderType_RenderType_MAX = Node_RenderType_OTHER;
+const int Node_RenderType_RenderType_ARRAYSIZE = Node_RenderType_RenderType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Node_RenderType_descriptor();
+inline const ::std::string& Node_RenderType_Name(Node_RenderType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Node_RenderType_descriptor(), value);
+}
+inline bool Node_RenderType_Parse(
+    const ::std::string& name, Node_RenderType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Node_RenderType>(
+    Node_RenderType_descriptor(), name, value);
+}
 // ===================================================================
 
 class Window : public ::google::protobuf::Message {
@@ -384,6 +406,33 @@ class Node : public ::google::protobuf::Message {
     return Node_Type_Parse(name, value);
   }
   
+  typedef Node_RenderType RenderType;
+  static const RenderType BLOCK = Node_RenderType_BLOCK;
+  static const RenderType INLINE = Node_RenderType_INLINE;
+  static const RenderType IMAGE = Node_RenderType_IMAGE;
+  static const RenderType VIDEO = Node_RenderType_VIDEO;
+  static const RenderType OTHER = Node_RenderType_OTHER;
+  static inline bool RenderType_IsValid(int value) {
+    return Node_RenderType_IsValid(value);
+  }
+  static const RenderType RenderType_MIN =
+    Node_RenderType_RenderType_MIN;
+  static const RenderType RenderType_MAX =
+    Node_RenderType_RenderType_MAX;
+  static const int RenderType_ARRAYSIZE =
+    Node_RenderType_RenderType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  RenderType_descriptor() {
+    return Node_RenderType_descriptor();
+  }
+  static inline const ::std::string& RenderType_Name(RenderType value) {
+    return Node_RenderType_Name(value);
+  }
+  static inline bool RenderType_Parse(const ::std::string& name,
+      RenderType* value) {
+    return Node_RenderType_Parse(name, value);
+  }
+  
   // accessors -------------------------------------------------------
   
   // required .vdom.Node.Type type = 1;
@@ -540,6 +589,13 @@ class Node : public ::google::protobuf::Message {
   inline void set_text(const char* value);
   inline void set_text(const char* value, size_t size);
   inline ::std::string* mutable_text();
+  
+  // optional .vdom.Node.RenderType render_type = 18 [default = OTHER];
+  inline bool has_render_type() const;
+  inline void clear_render_type();
+  static const int kRenderTypeFieldNumber = 18;
+  inline ::vdom::Node_RenderType render_type() const;
+  inline void set_render_type(::vdom::Node_RenderType value);
   
   // optional string font_size = 20;
   inline bool has_font_size() const;
@@ -788,6 +844,19 @@ class Node : public ::google::protobuf::Message {
         }
     }
 
+    bool all_children_inline() {
+        if (type() == ELEMENT && render_type() == BLOCK) {
+            for (int i = 0; i < child_nodes_size(); i++) {
+                if (child_nodes(i).render_type() == BLOCK) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return true;
+        }
+    }
+
     void build_vdom_tree(Window* win, Document* doc, Node* parent_node = NULL, int child_index = 0) {
         set_owner_document(doc);
         set_owner_window(win);
@@ -809,6 +878,7 @@ class Node : public ::google::protobuf::Message {
         bool vd_has_cached_content;
         ::std::string vd_content;
 
+ 
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -842,6 +912,7 @@ class Node : public ::google::protobuf::Message {
   static const ::std::string _default_value_;
   ::std::string* text_;
   static const ::std::string _default_text_;
+  int render_type_;
   ::std::string* font_size_;
   static const ::std::string _default_font_size_;
   ::std::string* font_family_;
@@ -855,7 +926,7 @@ class Node : public ::google::protobuf::Message {
   friend void protobuf_AssignDesc_vdom_2eproto();
   friend void protobuf_ShutdownFile_vdom_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(22 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(23 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -1685,42 +1756,59 @@ inline ::std::string* Node::mutable_text() {
   return text_;
 }
 
+// optional .vdom.Node.RenderType render_type = 18 [default = OTHER];
+inline bool Node::has_render_type() const {
+  return _has_bit(17);
+}
+inline void Node::clear_render_type() {
+  render_type_ = 10;
+  _clear_bit(17);
+}
+inline ::vdom::Node_RenderType Node::render_type() const {
+  return static_cast< ::vdom::Node_RenderType >(render_type_);
+}
+inline void Node::set_render_type(::vdom::Node_RenderType value) {
+  GOOGLE_DCHECK(::vdom::Node_RenderType_IsValid(value));
+  _set_bit(17);
+  render_type_ = value;
+}
+
 // optional string font_size = 20;
 inline bool Node::has_font_size() const {
-  return _has_bit(17);
+  return _has_bit(18);
 }
 inline void Node::clear_font_size() {
   if (font_size_ != &_default_font_size_) {
     font_size_->clear();
   }
-  _clear_bit(17);
+  _clear_bit(18);
 }
 inline const ::std::string& Node::font_size() const {
   return *font_size_;
 }
 inline void Node::set_font_size(const ::std::string& value) {
-  _set_bit(17);
+  _set_bit(18);
   if (font_size_ == &_default_font_size_) {
     font_size_ = new ::std::string;
   }
   font_size_->assign(value);
 }
 inline void Node::set_font_size(const char* value) {
-  _set_bit(17);
+  _set_bit(18);
   if (font_size_ == &_default_font_size_) {
     font_size_ = new ::std::string;
   }
   font_size_->assign(value);
 }
 inline void Node::set_font_size(const char* value, size_t size) {
-  _set_bit(17);
+  _set_bit(18);
   if (font_size_ == &_default_font_size_) {
     font_size_ = new ::std::string;
   }
   font_size_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* Node::mutable_font_size() {
-  _set_bit(17);
+  _set_bit(18);
   if (font_size_ == &_default_font_size_) {
     font_size_ = new ::std::string;
   }
@@ -1729,40 +1817,40 @@ inline ::std::string* Node::mutable_font_size() {
 
 // optional string font_family = 21;
 inline bool Node::has_font_family() const {
-  return _has_bit(18);
+  return _has_bit(19);
 }
 inline void Node::clear_font_family() {
   if (font_family_ != &_default_font_family_) {
     font_family_->clear();
   }
-  _clear_bit(18);
+  _clear_bit(19);
 }
 inline const ::std::string& Node::font_family() const {
   return *font_family_;
 }
 inline void Node::set_font_family(const ::std::string& value) {
-  _set_bit(18);
+  _set_bit(19);
   if (font_family_ == &_default_font_family_) {
     font_family_ = new ::std::string;
   }
   font_family_->assign(value);
 }
 inline void Node::set_font_family(const char* value) {
-  _set_bit(18);
+  _set_bit(19);
   if (font_family_ == &_default_font_family_) {
     font_family_ = new ::std::string;
   }
   font_family_->assign(value);
 }
 inline void Node::set_font_family(const char* value, size_t size) {
-  _set_bit(18);
+  _set_bit(19);
   if (font_family_ == &_default_font_family_) {
     font_family_ = new ::std::string;
   }
   font_family_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* Node::mutable_font_family() {
-  _set_bit(18);
+  _set_bit(19);
   if (font_family_ == &_default_font_family_) {
     font_family_ = new ::std::string;
   }
@@ -1771,40 +1859,40 @@ inline ::std::string* Node::mutable_font_family() {
 
 // optional string font_style = 22;
 inline bool Node::has_font_style() const {
-  return _has_bit(19);
+  return _has_bit(20);
 }
 inline void Node::clear_font_style() {
   if (font_style_ != &_default_font_style_) {
     font_style_->clear();
   }
-  _clear_bit(19);
+  _clear_bit(20);
 }
 inline const ::std::string& Node::font_style() const {
   return *font_style_;
 }
 inline void Node::set_font_style(const ::std::string& value) {
-  _set_bit(19);
+  _set_bit(20);
   if (font_style_ == &_default_font_style_) {
     font_style_ = new ::std::string;
   }
   font_style_->assign(value);
 }
 inline void Node::set_font_style(const char* value) {
-  _set_bit(19);
+  _set_bit(20);
   if (font_style_ == &_default_font_style_) {
     font_style_ = new ::std::string;
   }
   font_style_->assign(value);
 }
 inline void Node::set_font_style(const char* value, size_t size) {
-  _set_bit(19);
+  _set_bit(20);
   if (font_style_ == &_default_font_style_) {
     font_style_ = new ::std::string;
   }
   font_style_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* Node::mutable_font_style() {
-  _set_bit(19);
+  _set_bit(20);
   if (font_style_ == &_default_font_style_) {
     font_style_ = new ::std::string;
   }
@@ -1813,40 +1901,40 @@ inline ::std::string* Node::mutable_font_style() {
 
 // optional string font_weight = 23;
 inline bool Node::has_font_weight() const {
-  return _has_bit(20);
+  return _has_bit(21);
 }
 inline void Node::clear_font_weight() {
   if (font_weight_ != &_default_font_weight_) {
     font_weight_->clear();
   }
-  _clear_bit(20);
+  _clear_bit(21);
 }
 inline const ::std::string& Node::font_weight() const {
   return *font_weight_;
 }
 inline void Node::set_font_weight(const ::std::string& value) {
-  _set_bit(20);
+  _set_bit(21);
   if (font_weight_ == &_default_font_weight_) {
     font_weight_ = new ::std::string;
   }
   font_weight_->assign(value);
 }
 inline void Node::set_font_weight(const char* value) {
-  _set_bit(20);
+  _set_bit(21);
   if (font_weight_ == &_default_font_weight_) {
     font_weight_ = new ::std::string;
   }
   font_weight_->assign(value);
 }
 inline void Node::set_font_weight(const char* value, size_t size) {
-  _set_bit(20);
+  _set_bit(21);
   if (font_weight_ == &_default_font_weight_) {
     font_weight_ = new ::std::string;
   }
   font_weight_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* Node::mutable_font_weight() {
-  _set_bit(20);
+  _set_bit(21);
   if (font_weight_ == &_default_font_weight_) {
     font_weight_ = new ::std::string;
   }
@@ -1890,6 +1978,10 @@ namespace protobuf {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::vdom::Node_Type>() {
   return ::vdom::Node_Type_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::vdom::Node_RenderType>() {
+  return ::vdom::Node_RenderType_descriptor();
 }
 
 }  // namespace google
