@@ -845,9 +845,9 @@ class Node : public ::google::protobuf::Message {
     }
 
     bool all_children_inline() {
-        if (type() == ELEMENT && render_type() == BLOCK) {
+        if (type() == ELEMENT && render_type() != INLINE) {
             for (int i = 0; i < child_nodes_size(); i++) {
-                if (child_nodes(i).render_type() == BLOCK) {
+                if (child_nodes(i).render_type() != INLINE) {
                     return false;
                 }
             }
