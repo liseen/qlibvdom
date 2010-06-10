@@ -291,10 +291,30 @@ class Document : public ::google::protobuf::Message {
   inline void set_title(const char* value, size_t size);
   inline ::std::string* mutable_title();
   
-  // optional .vdom.Node body = 4;
+  // optional string keywords = 4;
+  inline bool has_keywords() const;
+  inline void clear_keywords();
+  static const int kKeywordsFieldNumber = 4;
+  inline const ::std::string& keywords() const;
+  inline void set_keywords(const ::std::string& value);
+  inline void set_keywords(const char* value);
+  inline void set_keywords(const char* value, size_t size);
+  inline ::std::string* mutable_keywords();
+  
+  // optional string description = 5;
+  inline bool has_description() const;
+  inline void clear_description();
+  static const int kDescriptionFieldNumber = 5;
+  inline const ::std::string& description() const;
+  inline void set_description(const ::std::string& value);
+  inline void set_description(const char* value);
+  inline void set_description(const char* value, size_t size);
+  inline ::std::string* mutable_description();
+  
+  // optional .vdom.Node body = 10;
   inline bool has_body() const;
   inline void clear_body();
-  static const int kBodyFieldNumber = 4;
+  static const int kBodyFieldNumber = 10;
   inline const ::vdom::Node& body() const;
   inline ::vdom::Node* mutable_body();
   
@@ -307,12 +327,16 @@ class Document : public ::google::protobuf::Message {
   ::google::protobuf::int32 height_;
   ::std::string* title_;
   static const ::std::string _default_title_;
+  ::std::string* keywords_;
+  static const ::std::string _default_keywords_;
+  ::std::string* description_;
+  static const ::std::string _default_description_;
   ::vdom::Node* body_;
   friend void  protobuf_AddDesc_vdom_2eproto();
   friend void protobuf_AssignDesc_vdom_2eproto();
   friend void protobuf_ShutdownFile_vdom_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -878,7 +902,8 @@ class Node : public ::google::protobuf::Message {
         bool vd_has_cached_content;
         ::std::string vd_content;
 
- 
+
+  // @@protoc_insertion_point(class_scope:vdom.Node)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -1150,19 +1175,103 @@ inline ::std::string* Document::mutable_title() {
   return title_;
 }
 
-// optional .vdom.Node body = 4;
-inline bool Document::has_body() const {
+// optional string keywords = 4;
+inline bool Document::has_keywords() const {
   return _has_bit(3);
+}
+inline void Document::clear_keywords() {
+  if (keywords_ != &_default_keywords_) {
+    keywords_->clear();
+  }
+  _clear_bit(3);
+}
+inline const ::std::string& Document::keywords() const {
+  return *keywords_;
+}
+inline void Document::set_keywords(const ::std::string& value) {
+  _set_bit(3);
+  if (keywords_ == &_default_keywords_) {
+    keywords_ = new ::std::string;
+  }
+  keywords_->assign(value);
+}
+inline void Document::set_keywords(const char* value) {
+  _set_bit(3);
+  if (keywords_ == &_default_keywords_) {
+    keywords_ = new ::std::string;
+  }
+  keywords_->assign(value);
+}
+inline void Document::set_keywords(const char* value, size_t size) {
+  _set_bit(3);
+  if (keywords_ == &_default_keywords_) {
+    keywords_ = new ::std::string;
+  }
+  keywords_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Document::mutable_keywords() {
+  _set_bit(3);
+  if (keywords_ == &_default_keywords_) {
+    keywords_ = new ::std::string;
+  }
+  return keywords_;
+}
+
+// optional string description = 5;
+inline bool Document::has_description() const {
+  return _has_bit(4);
+}
+inline void Document::clear_description() {
+  if (description_ != &_default_description_) {
+    description_->clear();
+  }
+  _clear_bit(4);
+}
+inline const ::std::string& Document::description() const {
+  return *description_;
+}
+inline void Document::set_description(const ::std::string& value) {
+  _set_bit(4);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void Document::set_description(const char* value) {
+  _set_bit(4);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void Document::set_description(const char* value, size_t size) {
+  _set_bit(4);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Document::mutable_description() {
+  _set_bit(4);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  return description_;
+}
+
+// optional .vdom.Node body = 10;
+inline bool Document::has_body() const {
+  return _has_bit(5);
 }
 inline void Document::clear_body() {
   if (body_ != NULL) body_->::vdom::Node::Clear();
-  _clear_bit(3);
+  _clear_bit(5);
 }
 inline const ::vdom::Node& Document::body() const {
   return body_ != NULL ? *body_ : *default_instance_->body_;
 }
 inline ::vdom::Node* Document::mutable_body() {
-  _set_bit(3);
+  _set_bit(5);
   if (body_ == NULL) body_ = new ::vdom::Node;
   return body_;
 }

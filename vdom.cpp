@@ -56,10 +56,12 @@ void protobuf_AssignDesc_vdom_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Window));
   Document_descriptor_ = file->message_type(1);
-  static const int Document_offsets_[4] = {
+  static const int Document_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Document, width_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Document, height_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Document, title_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Document, keywords_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Document, description_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Document, body_),
   };
   Document_reflection_ =
@@ -154,22 +156,23 @@ void protobuf_AddDesc_vdom_2eproto() {
     "n\030\001 \002(\t\022\023\n\013inner_width\030\002 \001(\005\022\024\n\014inner_he"
     "ight\030\003 \001(\005\022\023\n\013outer_width\030\004 \001(\005\022\024\n\014outer"
     "_height\030\005 \001(\005\022\033\n\003doc\030\006 \001(\0132\016.vdom.Docume"
-    "nt\"R\n\010Document\022\r\n\005width\030\001 \001(\005\022\016\n\006height\030"
-    "\002 \001(\005\022\r\n\005title\030\003 \001(\t\022\030\n\004body\030\004 \001(\0132\n.vdo"
-    "m.Node\"\231\004\n\004Node\022\035\n\004type\030\001 \002(\0162\017.vdom.Nod"
-    "e.Type\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\t\n\001w\030\004 \001(\r\022"
-    "\t\n\001h\030\005 \001(\r\022\n\n\002id\030\007 \001(\t\022\020\n\010tag_name\030\006 \001(\t"
-    "\022\014\n\004name\030\010 \001(\t\022\022\n\nclass_name\030\t \001(\t\022\r\n\005co"
-    "lor\030\n \001(\t\022\030\n\020background_color\030\013 \001(\t\022\016\n\006t"
-    "arget\030\014 \001(\t\022\013\n\003alt\030\r \001(\t\022\013\n\003src\030\016 \001(\t\022\014\n"
-    "\004href\030\017 \001(\t\022\r\n\005value\030\020 \001(\t\022\014\n\004text\030\021 \001(\t"
-    "\0221\n\013render_type\030\022 \001(\0162\025.vdom.Node.Render"
-    "Type:\005OTHER\022\021\n\tfont_size\030\024 \001(\t\022\023\n\013font_f"
-    "amily\030\025 \001(\t\022\022\n\nfont_style\030\026 \001(\t\022\023\n\013font_"
-    "weight\030\027 \001(\t\022\037\n\013child_nodes\030\030 \003(\0132\n.vdom"
-    ".Node\"\035\n\004Type\022\010\n\004TEXT\020\000\022\013\n\007ELEMENT\020\001\"D\n\n"
-    "RenderType\022\t\n\005BLOCK\020\000\022\n\n\006INLINE\020\001\022\t\n\005IMA"
-    "GE\020\002\022\t\n\005VIDEO\020\003\022\t\n\005OTHER\020\n", 786);
+    "nt\"y\n\010Document\022\r\n\005width\030\001 \001(\005\022\016\n\006height\030"
+    "\002 \001(\005\022\r\n\005title\030\003 \001(\t\022\020\n\010keywords\030\004 \001(\t\022\023"
+    "\n\013description\030\005 \001(\t\022\030\n\004body\030\n \001(\0132\n.vdom"
+    ".Node\"\231\004\n\004Node\022\035\n\004type\030\001 \002(\0162\017.vdom.Node"
+    ".Type\022\t\n\001x\030\002 \001(\r\022\t\n\001y\030\003 \001(\r\022\t\n\001w\030\004 \001(\r\022\t"
+    "\n\001h\030\005 \001(\r\022\n\n\002id\030\007 \001(\t\022\020\n\010tag_name\030\006 \001(\t\022"
+    "\014\n\004name\030\010 \001(\t\022\022\n\nclass_name\030\t \001(\t\022\r\n\005col"
+    "or\030\n \001(\t\022\030\n\020background_color\030\013 \001(\t\022\016\n\006ta"
+    "rget\030\014 \001(\t\022\013\n\003alt\030\r \001(\t\022\013\n\003src\030\016 \001(\t\022\014\n\004"
+    "href\030\017 \001(\t\022\r\n\005value\030\020 \001(\t\022\014\n\004text\030\021 \001(\t\022"
+    "1\n\013render_type\030\022 \001(\0162\025.vdom.Node.RenderT"
+    "ype:\005OTHER\022\021\n\tfont_size\030\024 \001(\t\022\023\n\013font_fa"
+    "mily\030\025 \001(\t\022\022\n\nfont_style\030\026 \001(\t\022\023\n\013font_w"
+    "eight\030\027 \001(\t\022\037\n\013child_nodes\030\030 \003(\0132\n.vdom."
+    "Node\"\035\n\004Type\022\010\n\004TEXT\020\000\022\013\n\007ELEMENT\020\001\"D\n\nR"
+    "enderType\022\t\n\005BLOCK\020\000\022\n\n\006INLINE\020\001\022\t\n\005IMAG"
+    "E\020\002\022\t\n\005VIDEO\020\003\022\t\n\005OTHER\020\n", 825);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "vdom.proto", &protobuf_RegisterTypes);
   Window::default_instance_ = new Window();
@@ -626,10 +629,14 @@ void Window::Swap(Window* other) {
 // ===================================================================
 
 const ::std::string Document::_default_title_;
+const ::std::string Document::_default_keywords_;
+const ::std::string Document::_default_description_;
 #ifndef _MSC_VER
 const int Document::kWidthFieldNumber;
 const int Document::kHeightFieldNumber;
 const int Document::kTitleFieldNumber;
+const int Document::kKeywordsFieldNumber;
+const int Document::kDescriptionFieldNumber;
 const int Document::kBodyFieldNumber;
 #endif  // !_MSC_VER
 
@@ -653,6 +660,8 @@ void Document::SharedCtor() {
   width_ = 0;
   height_ = 0;
   title_ = const_cast< ::std::string*>(&_default_title_);
+  keywords_ = const_cast< ::std::string*>(&_default_keywords_);
+  description_ = const_cast< ::std::string*>(&_default_description_);
   body_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -664,6 +673,12 @@ Document::~Document() {
 void Document::SharedDtor() {
   if (title_ != &_default_title_) {
     delete title_;
+  }
+  if (keywords_ != &_default_keywords_) {
+    delete keywords_;
+  }
+  if (description_ != &_default_description_) {
+    delete description_;
   }
   if (this != default_instance_) {
     delete body_;
@@ -700,6 +715,16 @@ void Document::Clear() {
       }
     }
     if (_has_bit(3)) {
+      if (keywords_ != &_default_keywords_) {
+        keywords_->clear();
+      }
+    }
+    if (_has_bit(4)) {
+      if (description_ != &_default_description_) {
+        description_->clear();
+      }
+    }
+    if (_has_bit(5)) {
       if (body_ != NULL) body_->::vdom::Node::Clear();
     }
   }
@@ -757,12 +782,46 @@ bool Document::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(34)) goto parse_body;
+        if (input->ExpectTag(34)) goto parse_keywords;
         break;
       }
       
-      // optional .vdom.Node body = 4;
+      // optional string keywords = 4;
       case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_keywords:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_keywords()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->keywords().data(), this->keywords().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(42)) goto parse_description;
+        break;
+      }
+      
+      // optional string description = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_description:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_description()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->description().data(), this->description().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(82)) goto parse_body;
+        break;
+      }
+      
+      // optional .vdom.Node body = 10;
+      case 10: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_body:
@@ -812,10 +871,28 @@ void Document::SerializeWithCachedSizes(
       3, this->title(), output);
   }
   
-  // optional .vdom.Node body = 4;
+  // optional string keywords = 4;
   if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->keywords().data(), this->keywords().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      4, this->keywords(), output);
+  }
+  
+  // optional string description = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->description().data(), this->description().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->description(), output);
+  }
+  
+  // optional .vdom.Node body = 10;
+  if (_has_bit(5)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      4, this->body(), output);
+      10, this->body(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -846,11 +923,31 @@ void Document::SerializeWithCachedSizes(
         3, this->title(), target);
   }
   
-  // optional .vdom.Node body = 4;
+  // optional string keywords = 4;
   if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->keywords().data(), this->keywords().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        4, this->keywords(), target);
+  }
+  
+  // optional string description = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->description().data(), this->description().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->description(), target);
+  }
+  
+  // optional .vdom.Node body = 10;
+  if (_has_bit(5)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        4, this->body(), target);
+        10, this->body(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -885,7 +982,21 @@ int Document::ByteSize() const {
           this->title());
     }
     
-    // optional .vdom.Node body = 4;
+    // optional string keywords = 4;
+    if (has_keywords()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->keywords());
+    }
+    
+    // optional string description = 5;
+    if (has_description()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->description());
+    }
+    
+    // optional .vdom.Node body = 10;
     if (has_body()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -929,6 +1040,12 @@ void Document::MergeFrom(const Document& from) {
       set_title(from.title());
     }
     if (from._has_bit(3)) {
+      set_keywords(from.keywords());
+    }
+    if (from._has_bit(4)) {
+      set_description(from.description());
+    }
+    if (from._has_bit(5)) {
       mutable_body()->::vdom::Node::MergeFrom(from.body());
     }
   }
@@ -960,6 +1077,8 @@ void Document::Swap(Document* other) {
     std::swap(width_, other->width_);
     std::swap(height_, other->height_);
     std::swap(title_, other->title_);
+    std::swap(keywords_, other->keywords_);
+    std::swap(description_, other->description_);
     std::swap(body_, other->body_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

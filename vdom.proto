@@ -15,7 +15,9 @@ message Document {
     optional int32 width = 1;
     optional int32 height = 2;
     optional string title = 3;
-    optional Node body = 4;
+    optional string keywords = 4;
+    optional string description = 5;
+    optional Node body = 10;
 };
 
 
