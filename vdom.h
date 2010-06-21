@@ -825,8 +825,7 @@ class Node : public ::google::protobuf::Message {
         }
     }
 
-    ::std::list<Node*> get_elements_by_tag_name(const ::std::string &tag_name) {
-        std::list<Node*> node_list;
+    size_t get_elements_by_tag_name(const ::std::string &tag_name, ::std::list<Node*> &node_list) {
         if (type() == ELEMENT) {
             for (int i = 0; i < child_nodes_size(); i++) {
                 Node* child = mutable_child_nodes(i);
@@ -834,22 +833,20 @@ class Node : public ::google::protobuf::Message {
                     if (child->tag_name() == tag_name) {
                         node_list.push_back(child);
                     }
-                    std::list<Node*> child_elems = child->get_elements_by_tag_name(tag_name);
-                    node_list.insert(node_list.end(), child_elems.begin(), child_elems.end());
+                    child->get_elements_by_tag_name(tag_name, node_list);
                 }
             }
         }
-        return node_list;
+        return node_list.size();
     }
 
     ::std::string markit_selector() {
         return "";
     }
 
-    ::std::list<Node*> get_elements_by_markit_selector(const ::std::string &selector) {
-        std::list<Node*> node_list;
+    size_t get_elements_by_markit_selector(const ::std::string & /*selector*/, ::std::list<Node*> &node_list) {
 
-        return node_list;
+        return node_list.size();
     }
 
     int rx(Node* base_node) {
