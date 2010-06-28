@@ -10,7 +10,7 @@ MODULES		= libvdom.so
 
 all: $(MODULES)
 
-$(MODULES):  vdom.cpp
+$(MODULES):  vdom.cpp vdom.h
 	$(CC) $(CPPFLAGS) $(LIBS) -Wall -lprotobuf -fPIC -shared -o $@ $<
 	
 clean:
