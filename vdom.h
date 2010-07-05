@@ -866,15 +866,31 @@ class Node : public ::google::protobuf::Message {
     }
 
     bool all_children_inline() {
-        if (type() == ELEMENT && render_type() != INLINE) {
-            for (int i = 0; i < child_nodes_size(); i++) {
-                if (child_nodes(i).type() != TEXT && child_nodes(i).render_type() != INLINE) {
-                    return false;
+        if (vd_has_all_children_inline) {
+            return vd_all_children_inline;
+        } else {
+            if (type() == ELEMENT) {
+                for (int i = 0; i < child_nodes_size(); i++) {
+                    Node *child = mutable_child_nodes(i);
+                    if (child->type() == ELEMENT) {
+                        if (child->render_type() != INLINE) {
+                            vd_has_all_children_inline = true;
+                            vd_all_children_inline = false;
+                            return vd_all_children_inline;
+                        } else {
+                            if (!child->all_children_inline()) {
+                                vd_has_all_children_inline = true;
+                                vd_all_children_inline = false;
+                                return vd_all_children_inline;
+                            }
+                        }
+                    }
                 }
             }
-            return true;
-        } else {
-            return true;
+
+            vd_has_all_children_inline = true;
+            vd_all_children_inline = true;
+            return vd_all_children_inline;
         }
     }
 
@@ -884,6 +900,7 @@ class Node : public ::google::protobuf::Message {
         set_parent_node(parent_node);
         set_child_index(child_index);
         vd_has_cached_content = false;
+        vd_has_all_children_inline = false;
 
         for (int i = 0; i < child_nodes_size(); i++) {
             Node *child = mutable_child_nodes(i);
@@ -898,6 +915,8 @@ class Node : public ::google::protobuf::Message {
         Window *vd_owner_window;
         bool vd_has_cached_content;
         ::std::string vd_content;
+        bool vd_has_all_children_inline;
+        bool vd_all_children_inline;
 
 
   // @@protoc_insertion_point(class_scope:vdom.Node)
