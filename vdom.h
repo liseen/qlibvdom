@@ -908,6 +908,24 @@ class Node : public ::google::protobuf::Message {
         }
     }
 
+    inline const ::std::string& repeat_sig() const {
+        return vd_repeat_sig;
+    }
+
+    void build_repeat_sig() {
+        for (int i = 0; i < child_nodes_size(); i++) {
+            Node *child = mutable_child_nodes(i);
+            if (child->type() == ELEMENT) {
+                vd_repeat_sig.append("#");
+                vd_repeat_sig.append(child->tag_name());
+                child->build_repeat_sig();
+                vd_repeat_sig.append(child->repeat_sig());
+                vd_repeat_sig.append("-");
+                vd_repeat_sig.append(child->tag_name());
+            }
+        }
+    }
+
     private:
         Node *vd_parent_node;
         int vd_child_index;
@@ -917,6 +935,7 @@ class Node : public ::google::protobuf::Message {
         ::std::string vd_content;
         bool vd_has_all_children_inline;
         bool vd_all_children_inline;
+        std::string vd_repeat_sig;
 
 
   // @@protoc_insertion_point(class_scope:vdom.Node)
