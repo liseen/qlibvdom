@@ -873,7 +873,7 @@ class Node : public ::google::protobuf::Message {
                 for (int i = 0; i < child_nodes_size(); i++) {
                     Node *child = mutable_child_nodes(i);
                     if (child->type() == ELEMENT) {
-                        if (child->render_type() != INLINE) {
+                        if (child->render_type() == BLOCK) {
                             vd_has_all_children_inline = true;
                             vd_all_children_inline = false;
                             return vd_all_children_inline;
