@@ -901,6 +901,7 @@ class Node : public ::google::protobuf::Message {
         set_child_index(child_index);
         vd_has_cached_content = false;
         vd_has_all_children_inline = false;
+        vd_has_normalized_content = false;
 
         for (int i = 0; i < child_nodes_size(); i++) {
             Node *child = mutable_child_nodes(i);
@@ -926,6 +927,46 @@ class Node : public ::google::protobuf::Message {
         }
     }
 
+    inline const ::std::string& normalized_content() {
+        if (!vd_has_normalized_content) {
+            normalize_text(content(), vd_normalized_content);
+            vd_has_normalized_content = true;
+        }
+        return vd_normalized_content;
+    }
+
+
+    void normalize_text(const std::string &raw, std::string &normalized) {
+        const char *p = raw.c_str();
+        int size = raw.size();
+        normalized.clear();
+        normalized.reserve(size);
+        bool pre_is_space = true;
+        for (int i = 0; i < size; i++) {
+            char c = *(p+i);
+            if (c == '\n') {
+                if (pre_is_space) {
+                    if (normalized.size() > 0) {
+                        normalized[normalized.size() - 1] = '\n';
+                    }
+                } else {
+                    pre_is_space = true;
+                    normalized.append(1, c);
+                }
+            } else if (isspace(c)) {
+                if (pre_is_space) {
+                    // do nothihng
+                } else {
+                    pre_is_space = true;
+                    normalized.append(" ");
+                }
+            } else {
+                pre_is_space = false;
+                normalized.append(1, c);
+            }
+        }
+    }
+
     private:
         Node *vd_parent_node;
         int vd_child_index;
@@ -936,6 +977,8 @@ class Node : public ::google::protobuf::Message {
         bool vd_has_all_children_inline;
         bool vd_all_children_inline;
         std::string vd_repeat_sig;
+        bool vd_has_normalized_content;
+        std::string vd_normalized_content;
 
 
   // @@protoc_insertion_point(class_scope:vdom.Node)
