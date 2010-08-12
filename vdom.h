@@ -817,6 +817,7 @@ class Node : public ::google::protobuf::Message {
         } else if (type() == TEXT) {
             return text();
         } else {
+            vd_content.clear();
             for (int i = 0; i <  child_nodes_size(); i++) {
                 vd_content.append(mutable_child_nodes(i)->content());
             }
@@ -914,6 +915,7 @@ class Node : public ::google::protobuf::Message {
     }
 
     void build_repeat_sig() {
+        vd_repeat_sig.clear();
         if (type() == ELEMENT) {
             vd_repeat_sig.append("#");
             vd_repeat_sig.append(tag_name());
